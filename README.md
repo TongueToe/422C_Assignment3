@@ -1,1 +1,2 @@
-# 422C_Assignment3
+# E E 422C - Word Ladder
+## DFS/BFS - Project 3
