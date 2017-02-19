@@ -1,12 +1,12 @@
 /* WORD LADDER Main.java
  * EE422C Project 3 submission by
  * Replace <...> with your actual data.
- * <Student1 Name>
- * <Student1 EID>
- * <Student1 5-digit Unique No.>
- * <Student2 Name>
- * <Student2 EID>
- * <Student2 5-digit Unique No.>
+ * Mustafa Irfan
+ * mi4467
+ * 16236
+ * Tung To
+ * tt23734
+ * 16236
  * Slip days used: <0>
  * Git URL:
  * Spring 2017
