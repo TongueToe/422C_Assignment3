@@ -12,5 +12,5 @@
 
 ### DFS length-shortening algorithm:
 + Avoid choosing adjacent nodes that point away from ending node
-+ After a path is found using DFS, eliminate roundabout paths (ie. a -> b -> c becomes a -> c if a, b, and c are all adjacent nodes to each other.)
++ After a path is found using DFS, eliminate roundabout paths (ie. a -> b -> c becomes a -> c if a, b, and c are all adjacent nodes.)
 
