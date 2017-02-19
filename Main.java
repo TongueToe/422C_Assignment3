@@ -13,14 +13,15 @@
  */
 
 
-package assignment3;
+//package assignment3;
 import java.util.*;
 import java.io.*;
 
 public class Main {
 	
 	// static variables and constants only here.
-	
+	private Set<String> dict;
+
 	public static void main(String[] args) throws Exception {
 		
 		Scanner kb;	// input Scanner for commands
@@ -36,6 +37,11 @@ public class Main {
 		}
 		initialize();
 		
+		ArrayList<String> input = parse(kb);
+		ArrayList<String> output = getWordLadderDFS(input.get(0), input.get(1));
+		for(String out: output)
+			System.out.println(out);
+
 		// TODO methods to read in words, output ladder
 	}
 	
@@ -51,19 +57,28 @@ public class Main {
 	 * If command is /quit, return empty ArrayList. 
 	 */
 	public static ArrayList<String> parse(Scanner keyboard) {
-		// TO DO
-		return null;
+		String input = keyboard.nextLine().toUpperCase();
+		if(input.equals("/quit"))
+			return new ArrayList<String>();
+		return new ArrayList<String>(Arrays.asList(input.split(" ")));
 	}
 	
 	public static ArrayList<String> getWordLadderDFS(String start, String end) {
 		
 		// Returned list should be ordered start to end.  Include start and end.
-		// Return empty list if no ladder.
-		// TODO some code
 		Set<String> dict = makeDictionary();
-		// TODO more code
-		
-		return null; // replace this line later with real return
+		ArrayList<String> visited = new ArrayList<String>();
+		Stack<String> stack = new Stack<String>();
+		stack.push(start);
+
+		ArrayList<String> preprocessed = new ArrayList<String>(DFS.getWordLadderDFS(start, end, dict, stack, visited));
+		if(preprocessed.size() == 1){
+			preprocessed.add(preprocessed.get(0));
+		}
+		else if(preprocessed.size() == 2){
+			return preprocessed;
+		}
+		return DFS.shorten(preprocessed);
 	}
 	
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
