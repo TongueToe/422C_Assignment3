@@ -1,4 +1,4 @@
-package Assignment3v2;
+package assignment3;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.Iterator;
@@ -10,27 +10,28 @@ import java.util.Queue;
 
 public class BFS {
 		public static ArrayList<String> getWordLadderBFS(String input, String output, Set<String> dict, Queue<Word> queue, ArrayList<Word> tracker){
-			while(queue.isEmpty()!=true){														//Takes the head, checks to see if it's end of ladder, otherwise keeps on traversing
+			while(queue.isEmpty()!=true){															//Takes the head, checks to see if it's end of ladder, otherwise keeps on traversing
 				Word current = queue.poll();
 				current.beenVisited=true;
 				tracker.add(current);
 				if(current.word.equals(output)){
 					return constructLadder(tracker, input, output);
 				}
-				ArrayList<String> adjacencyVertices = getAdjacentVerticies(current.word, dict, tracker);	//gets adjacent string
-				addToQueue(adjacencyVertices, queue, current);												//adds strings as Word objects to the Q
+				ArrayList<String> adjacencyVertices = getAdjacentVerticies(current, dict, tracker);	//gets adjacent string
+				addToQueue(adjacencyVertices, queue, current);										//adds strings as Word objects to the Q
 			}		
 			return null;		
 		}
 		
-		public static ArrayList<String> getAdjacentVerticies(String input, Set<String> dict, ArrayList<Word> tracker){		//takes vertex input, and collects adjacencies that have been  not been visited
+		public static ArrayList<String> getAdjacentVerticies(Word current, Set<String> dict, ArrayList<Word> tracker){		//takes vertex input, and collects adjacencies that have been  not been visited
 			Iterator dictionaryTraversal = dict.iterator();
 			ArrayList<String> neighbors = new ArrayList<String>();
 			while(dictionaryTraversal.hasNext()!=false){
 				String word =(String) dictionaryTraversal.next();
-				if(isNeighbor(input, word)==true){
+				if(isNeighbor(current.word, word)==true){
 					if(hasItBeenVisited(word, tracker)!=true){			//checks to see if adjacency has been visited
 						neighbors.add(word);
+						tracker.add(new Word(word, current));			//marks it as visited
 					}
 				}
 			}
@@ -82,7 +83,6 @@ public class BFS {
 			for(int i=wordLadderTemp.size()-1; i>=0; i--){
 				wordLadder.add(wordLadderTemp.get(i));
 			}
-			return wordLadder;
-			
+			return wordLadder;		
 		}
 }
