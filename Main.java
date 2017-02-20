@@ -81,12 +81,11 @@ public class Main {
 	}
 	
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
-		
-		// TODO some code
 		Set<String> dict = makeDictionary();
-		// TODO more code
-		
-		return null; // replace this line later with real return
+		LinkedList<String> visited = new LinkedList<String>();
+		ArrayList<String> ladder = new ArrayList<String>();
+		ladder.add(start);
+		return BFS.getWordLadderBFS(start, end, dict, ladder, visited); // replace this line later with real return
 	}
     
 	public static Set<String>  makeDictionary () {
