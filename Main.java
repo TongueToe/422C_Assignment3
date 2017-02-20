@@ -81,11 +81,13 @@ public class Main {
 	}
 	
     public static ArrayList<String> getWordLadderBFS(String start, String end) {
-		Set<String> dict = makeDictionary();
-		LinkedList<String> visited = new LinkedList<String>();
-		ArrayList<String> ladder = new ArrayList<String>();
-		ladder.add(start);
-		return BFS.getWordLadderBFS(start, end, dict, ladder, visited); // replace this line later with real return
+		// TODO some code
+		Set<String> dict = makeDictionary();				//creates a queue to keep track of visited nodes
+		Queue<Word> queue = new LinkedList<Word>();		//creates ladder for 
+		ArrayList<Word> visitTracker= new ArrayList<Word>();
+		Word first= new Word(start, null);
+		queue.offer(first);
+		return BFS.getWordLadderBFS(start, end, dict, queue, visitTracker); // replace this line later with real return
 	}
     
 	public static Set<String>  makeDictionary () {
