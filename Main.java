@@ -38,8 +38,8 @@ public class Main {
 		
 		ArrayList<String> input = parse(kb);
 		ArrayList<String> output = getWordLadderDFS(input.get(0), input.get(1));
-		for(String out: output)
-			System.out.println(out);
+		
+		printLadder(DFS.shorten(output));
 
 		// TODO methods to read in words, output ladder
 	}
@@ -48,6 +48,8 @@ public class Main {
 		// initialize your static variables or constants here.
 		// We will call this method before running our JUNIT tests.  So call it 
 		// only once at the start of main.
+		
+	
 	}
 	
 	/**
@@ -70,7 +72,21 @@ public class Main {
 		Stack<String> stack = new Stack<String>();
 		stack.push(start);
 
-		ArrayList<String> preprocessed = new ArrayList<String>(DFS.getWordLadderDFS(start, end, dict, stack, visited));
+		Set<String> dict2 = new HashSet<String>();
+
+		Iterator it = dict.iterator();
+		while(it.hasNext()){
+			String i = (String)it.next();
+			if(i.length() > 5){
+				dict2.add(i.split("\r\n")[0]);
+				dict2.add(i.split("\r\n")[1]);
+			}
+			else{
+				dict2.add(i);
+			}
+		}
+		
+		ArrayList<String> preprocessed = new ArrayList<String>(DFS.getWordLadderDFS(start, end, dict2, stack, visited));
 		if(preprocessed.size() == 1){
 			preprocessed.add(preprocessed.get(0));
 		}
@@ -107,8 +123,13 @@ public class Main {
 	}
 	
 	public static void printLadder(ArrayList<String> ladder) {
-		
+		if(ladder.size() == 2)
+			System.out.println("no word ladder can be found between " + ladder.get(0).toLowerCase() + " and " + ladder.get(1).toLowerCase());
+		else{
+			System.out.println("a " + (ladder.size() - 2) + "-rung word ladder exists between " + ladder.get(0).toLowerCase() + " and " + ladder.get(ladder.size() - 1).toLowerCase());	
+			for(int i = 0; i < ladder.size(); i++){
+				System.out.println(ladder.get(i));
+			}
+		}
 	}
-	// TODO
-	// Other private static methods here
 }

@@ -38,7 +38,7 @@ public class DFS{
 			int inputDiff = getIndexDiff(input, k);
 			int outputDiff = getIndexDiff(output, k);
 			
-			if(inputDiff <= 1 && (outputDiff <= diff))
+			if(inputDiff <= 1 && (outputDiff - 1 <= diff))
 				nodes.add(k);
 
 		}
@@ -48,7 +48,7 @@ public class DFS{
 
 	private static int getIndexDiff(String a, String b){
 		int count = 0;
-		for(int i = 0; i < a.length(); i++){
+		for(int i = 0; i < 5; i++){
 			if(a.charAt(i) != b.charAt(i))
 				count++;
 		}
@@ -57,6 +57,8 @@ public class DFS{
 
 	public static ArrayList<String> shorten(ArrayList<String> input){
 		LinkedHashMap<String, Integer> output = new LinkedHashMap<String, Integer>();
+		if(input.size() <= 2)
+			return input;
 		String current = input.get(0);
 		while(!current.equals(input.get(input.size() - 1))){
 			for(int i = 0; i < input.size(); i++){
