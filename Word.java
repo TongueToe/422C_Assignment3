@@ -1,4 +1,4 @@
-package Assignment3v2;
+package assignment3;
 
 public class Word {
 	String	word;
