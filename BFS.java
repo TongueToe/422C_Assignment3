@@ -14,7 +14,10 @@ public class BFS {
 				}
 				getAdjacentVerticies(current, dict, tracker, queue);	//gets adjacent string
 			}		
-			return null;		
+			ArrayList<String> ladder = new ArrayList<String>();
+			ladder.add(input);
+			ladder.add(output);
+			return ladder;				
 		}
 		
 		public static void getAdjacentVerticies(Word current, Set<String> dict, ArrayList<Word> tracker, Queue<Word> queue){		//takes vertex input, and collects adjacencies that have been  not been visited
