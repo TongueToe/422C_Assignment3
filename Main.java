@@ -86,12 +86,19 @@ public class Main {
 			}
 		}
 		
-		ArrayList<String> preprocessed = new ArrayList<String>(DFS.getWordLadderDFS(start, end, dict2, stack, visited));
-		if(preprocessed.size() == 1){
-			preprocessed.add(preprocessed.get(0));
+		if(!dict2.contains(start) && dict2.contains(end)){
+			ArrayList<String> k = new ArrayList<String>();
+	        k.add(start);
+			k.add(end);
+			return k;	
 		}
-		else if(preprocessed.size() == 2){
-			return preprocessed;
+
+		ArrayList<String> preprocessed = new ArrayList<String>(DFS.getWordLadderDFS(start, end, dict2, stack, visited));
+		if(preprocessed.size() <= 2){
+			ArrayList<String> k = new ArrayList<String>();
+			k.add(start);
+			k.add(end);
+			return k;
 		}
 		return DFS.shorten(preprocessed);
 	}
