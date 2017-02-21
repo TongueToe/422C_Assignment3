@@ -1,10 +1,19 @@
-//package assignment3;
+package assignment3;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.Iterator;
 import java.util.Queue;
 
 public class BFS {
+		/**
+		 * 
+		 * @param input
+		 * @param output
+		 * @param dict
+		 * @param queue
+		 * @param tracker
+		 * @return
+		 */
 		public static ArrayList<String> getWordLadderBFS(String input, String output, Set<String> dict, Queue<Word> queue, ArrayList<Word> tracker){
 			while(queue.isEmpty()!=true){															//Takes the head, checks to see if it's end of ladder, otherwise keeps on traversing
 				Word current = queue.poll();
@@ -14,12 +23,19 @@ public class BFS {
 				}
 				getAdjacentVerticies(current, dict, tracker, queue);	//gets adjacent string
 			}		
+			//if(queue.isEmpty())
 			ArrayList<String> ladder = new ArrayList<String>();
 			ladder.add(input);
 			ladder.add(output);
-			return ladder;				
+			return ladder;		
 		}
-		
+		/**
+		 * 
+		 * @param current
+		 * @param dict
+		 * @param tracker
+		 * @param queue
+		 */
 		public static void getAdjacentVerticies(Word current, Set<String> dict, ArrayList<Word> tracker, Queue<Word> queue){		//takes vertex input, and collects adjacencies that have been  not been visited
 			Iterator dictionaryTraversal = dict.iterator();
 			while(dictionaryTraversal.hasNext()!=false){
@@ -34,7 +50,12 @@ public class BFS {
 			}
 			return;
 		}
-		
+		/**
+		 * 
+		 * @param vertex
+		 * @param word
+		 * @return
+		 */
 		public static boolean isNeighbor(String vertex, String word){		//takes a node, and some other word, and sees if they are connected
 			int difChars=0;
 			for(int i=0; i<vertex.length(); i++){
@@ -48,6 +69,12 @@ public class BFS {
 			return true;			
 		}
 		
+		/**
+		 * 
+		 * @param word
+		 * @param tracker
+		 * @return
+		 */
 		public static boolean hasItBeenVisited(String word, ArrayList<Word> tracker){
 			for(int i=0; i<tracker.size(); i++){
 				if(word.equals(tracker.get(i).word)){														//sees if vertex has been visited, if so, we don't put it in que
@@ -57,6 +84,13 @@ public class BFS {
 			return false;
 		}
 		
+		/**
+		 * 
+		 * @param tracker
+		 * @param input
+		 * @param output
+		 * @return
+		 */
 		public static ArrayList<String> constructLadder(ArrayList<Word> tracker, String input, String output){
 			ArrayList<String> wordLadderTemp = new ArrayList<String>();
 			ArrayList<String> wordLadder = new ArrayList<String>();
