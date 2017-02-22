@@ -15,6 +15,14 @@ public class BFS {
 		 * @return
 		 */
 		public static ArrayList<String> getWordLadderBFS(String input, String output, Set<String> dict, Queue<Word> queue, ArrayList<Word> tracker){
+			if(input.equals(output)){
+				ArrayList<String> ladder = new ArrayList<String>();
+				ladder.add(input);
+				ladder.add(output);
+				return ladder;
+				}
+			
+			
 			while(queue.isEmpty()!=true){															//Takes the head, checks to see if it's end of ladder, otherwise keeps on traversing
 				Word current = queue.poll();
 				tracker.add(current);
@@ -22,12 +30,12 @@ public class BFS {
 					return constructLadder(tracker, input, output);
 				}
 				getAdjacentVerticies(current, dict, tracker, queue);	//gets adjacent string
-			}		
-			//if(queue.isEmpty())
+			}
 			ArrayList<String> ladder = new ArrayList<String>();
 			ladder.add(input);
 			ladder.add(output);
-			return ladder;		
+			return ladder;
+				//return null;
 		}
 		/**
 		 * 
