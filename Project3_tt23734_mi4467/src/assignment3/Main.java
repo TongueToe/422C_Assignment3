@@ -44,7 +44,7 @@ public class Main {
 		ArrayList<String> output = getWordLadderDFS(input.get(0), input.get(1));
 		
 		//printLadder(DFS.shorten(output));
-		System.out.println(Arrays.toString(getWordLadderDFS("hello", "cells").toArray()));
+		printLadder(output);
 
 		// TODO methods to read in words, output ladder
 	}
